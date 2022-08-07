@@ -125,6 +125,17 @@
 .form {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: center;
+  /* align-items: center; */
+  /* align-content: center; */
+}
+
+.form-check {
+  color: aliceblue;
+  /* margin-right: 2px; */
+}
+
+.selectForm {
+  width: 250px;
+  margin-left: 50px;
 }

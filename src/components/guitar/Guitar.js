@@ -560,39 +560,45 @@ function Guitar() {
         <span className="flag24">24</span>
       </div>
       <div className="form">
-        <label
-          for="checked-toggle"
-          class="inline-flex relative items-center cursor-pointer"
-        >
-          <input
-            type="checkbox"
-            value=""
-            id="checked-toggle"
-            class="sr-only peer"
-            checked
-          ></input>
-          <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-          <span class="ml-3 text-sm font-medium text-white-900 dark:text-white-300">
-            Checked toggle
-          </span>
-        </label>
-        <label
-          for="countries"
-          class="block mb-2 text-sm font-medium text-white-900 dark:text-gray-400"
-        >
-          Select an option
-        </label>
         <select
-          id="countries"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="form-select form-select-lg mb-3 selectForm"
+          aria-label=".form-select-lg example"
         >
-          <option selected>Choix de gamme ou mode</option>
-          <option value="majorPentaScale">Pentatonique majeure</option>
-          <option value="minorPentaScale">Pentatonique mineure</option>
-          <option value="majorNatScale">Majeure naturel</option>
-          <option value="minorNatSclale">Mineure naturel</option>
-          <option value="minorHarmoScale">Mineure harmonique</option>
-          <option value="minorMeloScale">Mineure Mélodique</option>
+          <option selected>Altération</option>
+          <option value="b">b</option>
+          <option value="#">#</option>
+        </select>
+
+        <select
+          className="form-select form-select-lg mb-3 selectForm"
+          aria-label=".form-select-lg example"
+        >
+          <option selected>Tonique</option>
+          <option value="C">C</option>
+          <option value="Db">Db</option>
+          <option value="D">D</option>
+          <option value="Eb">Eb</option>
+          <option value="E">E</option>
+          <option value="F">F</option>
+          <option value="Gb">Gb</option>
+          <option value="G">G</option>
+          <option value="Ab">Ab</option>
+          <option value="A">A</option>
+          <option value="Bb">Bb</option>
+          <option value="B">B</option>
+        </select>
+
+        <select
+          className="form-select form-select-lg mb-3 selectForm"
+          aria-label=".form-select-lg example"
+        >
+          <option selected>Choisir une gamme</option>
+          <option value="majPenta">Pentatonique majeure</option>
+          <option value="minPenta">Pentatonique mineure</option>
+          <option value="majNatScale">Gamme majeure naturel</option>
+          <option value="minNatScale">Gamme mineure naturel</option>
+          <option value="minHarmoScale">Gamme mineure Harmonique</option>
+          <option value="minMeloScale">Gamme mineure Mélodique</option>
         </select>
       </div>
     </div>
