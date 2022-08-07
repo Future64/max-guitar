@@ -1,0 +1,130 @@
+.Guitar {
+  display: flex;
+  flex-direction: column;
+  /* flex-wrap: wrap;
+  justify-content: center;
+  align-items: center; */
+  /* overflow: scroll; */
+  height: 100%;
+  width: auto;
+  margin-top: 50px;
+}
+.stringReal {
+  position: absolute;
+  margin-top: -15px;
+  height: 5px;
+  width: 1670px;
+  background-color: rgb(175, 100, 70);
+  border-radius: 50%;
+  z-index: 1;
+}
+.string {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: aliceblue;
+  width: 40px;
+  height: 40px;
+  font-weight: 900;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: -10px;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.string:hover {
+  opacity: 90%;
+}
+
+.fret {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  border-right: solid 4px rgb(97, 86, 76);
+  border-radius: 4px;
+  margin-top: -35px;
+}
+
+.string1,
+.string2,
+.string3,
+.string4,
+.string5,
+.string6 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.hidden {
+  /* display: none; */
+  visibility: hidden;
+}
+
+.root {
+  background-color: brown;
+  color: white;
+}
+
+.flagBox {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 10px;
+  /* font-weight: 700; */
+}
+
+.flag3 {
+  position: relative;
+  right: 520px;
+}
+.flag5 {
+  position: relative;
+  right: 400px;
+}
+.flag7 {
+  position: relative;
+  right: 280px;
+}
+.flag9 {
+  position: relative;
+  right: 160px;
+}
+.flag12 {
+  position: relative;
+  left: 22px;
+}
+.flag15 {
+  position: relative;
+  left: 198px;
+}
+.flag17 {
+  position: relative;
+  left: 310px;
+}
+.flag19 {
+  position: relative;
+  left: 420px;
+}
+.flag21 {
+  position: relative;
+  left: 530px;
+}
+.flag24 {
+  position: relative;
+  left: 705px;
+}
+
+/* ------------ Formulaire --------------*/
+
+.form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
