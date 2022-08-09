@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { scales, modes } from "../../data/scalesData";
 import {
   string1,
@@ -30,6 +30,19 @@ function Guitar() {
   let increment5ID = 0;
   let increment6ID = 0;
 
+  let [scaleSorted, setScaleSorted] = useState([]);
+
+  const [userInputs, setUserInputs] = useState({
+    alt: "",
+    note: "",
+    scale: "",
+  });
+
+  function handleInputChange(event) {
+    const inputName = event.target.id;
+    setUserInputs({ ...userInputs, [inputName]: event.target.value });
+  }
+
   function suppAlteration(note) {
     if (
       note === "F#" ||
@@ -42,6 +55,40 @@ function Guitar() {
     }
     return "";
   }
+  function handleSclae(note) {
+    if (
+      note === "F#" ||
+      note === "G#" ||
+      note === "A#" ||
+      note === "C#" ||
+      note === "D#"
+    ) {
+      return "hidden";
+    }
+    return "";
+  }
+
+  function handleScales() {
+    for (let i = 0; i < scales[0].majorScale.key.length; i++) {
+      // console.log(scales[0].majorScale.key[i]);
+      if (scales[0].majorScale.key[i][0] === userInputs.note) {
+        setScaleSorted(
+          scales[0].majorScale.key[i].filter(function (ele, pos) {
+            return scales[0].majorScale.key[i].indexOf(ele) == pos;
+          })
+        );
+        break;
+      }
+    }
+  }
+
+  function saveSubmit(e) {
+    e.preventDefault();
+    console.log(userInputs);
+  }
+
+  handleScales();
+  console.log(scaleSorted);
 
   return (
     <div className="Guitar">
@@ -182,48 +229,68 @@ function Guitar() {
         <span className="flag21">21</span>
         <span className="flag24">24</span>
       </div>
-      <div className="form">
-        <select
-          className="form-select form-select-lg mb-3 selectForm"
-          aria-label=".form-select-lg example"
-        >
-          <option defaultValue>Altération</option>
-          <option value="b">b</option>
-          <option value="#">#</option>
-        </select>
+      <form
+        id="form"
+        className="form"
+        onSubmit={(e) => {
+          saveSubmit(e);
+        }}
+      >
+        <div className="selectBox">
+          <select
+            className="form-select form-select-lg mb-3 selectForm"
+            aria-label=".form-select-lg example"
+            id="alt"
+            onChange={handleInputChange}
+          >
+            <option defaultValue>Altération</option>
+            <option value="b">b</option>
+            <option value="#">#</option>
+          </select>
+          <select
+            className="form-select form-select-lg mb-3 selectForm"
+            aria-label=".form-select-lg example"
+            id="note"
+            onChange={handleInputChange}
+          >
+            <option defaultValue>Tonique</option>
+            <option value="C">C</option>
+            <option value="Db">Db</option>
+            <option value="D">D</option>
+            <option value="Eb">Eb</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="Gb">Gb</option>
+            <option value="G">G</option>
+            <option value="Ab">Ab</option>
+            <option value="A">A</option>
+            <option value="Bb">Bb</option>
+            <option value="B">B</option>
+          </select>
+          <select
+            className="form-select form-select-lg mb-3 selectForm"
+            aria-label=".form-select-lg example"
+            id="scale"
+            onChange={handleInputChange}
+          >
+            <option defaultValue>Choisir une gamme</option>
+            <option value="majPenta">Pentatonique majeure</option>
+            <option value="minPenta">Pentatonique mineure</option>
+            <option value="majNatScale">Gamme majeure naturel</option>
+            <option value="minNatScale">Gamme mineure naturel</option>
+            <option value="minHarmoScale">Gamme mineure Harmonique</option>
+            <option value="minMeloScale">Gamme mineure Mélodique</option>
+          </select>
+        </div>
 
-        <select
-          className="form-select form-select-lg mb-3 selectForm"
-          aria-label=".form-select-lg example"
+        <button
+          form="form"
+          type="submit"
+          className="btn btn-success buttonValid"
         >
-          <option defaultValue>Tonique</option>
-          <option value="C">C</option>
-          <option value="Db">Db</option>
-          <option value="D">D</option>
-          <option value="Eb">Eb</option>
-          <option value="E">E</option>
-          <option value="F">F</option>
-          <option value="Gb">Gb</option>
-          <option value="G">G</option>
-          <option value="Ab">Ab</option>
-          <option value="A">A</option>
-          <option value="Bb">Bb</option>
-          <option value="B">B</option>
-        </select>
-
-        <select
-          className="form-select form-select-lg mb-3 selectForm"
-          aria-label=".form-select-lg example"
-        >
-          <option defaultValue>Choisir une gamme</option>
-          <option value="majPenta">Pentatonique majeure</option>
-          <option value="minPenta">Pentatonique mineure</option>
-          <option value="majNatScale">Gamme majeure naturel</option>
-          <option value="minNatScale">Gamme mineure naturel</option>
-          <option value="minHarmoScale">Gamme mineure Harmonique</option>
-          <option value="minMeloScale">Gamme mineure Mélodique</option>
-        </select>
-      </div>
+          Valider
+        </button>
+      </form>
     </div>
   );
 }

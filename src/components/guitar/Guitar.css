@@ -76,16 +76,16 @@
   flex-direction: row;
   justify-content: center;
   margin-top: 10px;
-  /* font-weight: 700; */
+  color: rgb(174, 171, 171);
 }
 
 .flag3 {
   position: relative;
-  right: 520px;
+  right: 515px;
 }
 .flag5 {
   position: relative;
-  right: 400px;
+  right: 395px;
 }
 .flag7 {
   position: relative;
@@ -124,8 +124,9 @@
 
 .form {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   /* align-items: center; */
   /* align-content: center; */
 }
@@ -137,5 +138,18 @@
 
 .selectForm {
   width: 250px;
+  margin-left: 50px;
+}
+
+.selectBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.buttonValid {
+  width: 200px;
+  margin-top: 50px;
   margin-left: 50px;
 }
