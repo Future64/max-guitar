@@ -38,11 +38,21 @@ function Guitar() {
     scale: "",
   });
 
+  /**
+   * It takes an event as an argument, and then sets the state of the userInputs object to the value of
+   * the input that was changed
+   * @param event - The event object that is passed to the function.
+   */
   function handleInputChange(event) {
     const inputName = event.target.id;
     setUserInputs({ ...userInputs, [inputName]: event.target.value });
   }
 
+  /**
+   * If the note is F#, G#, A#, C#, or D#, then return "hidden", otherwise return ""
+   * @param note - the note that is being played
+   * @returns The function suppAlteration is returning a string.
+   */
   function suppAlteration(note) {
     if (
       note === "F#" ||
@@ -55,19 +65,22 @@ function Guitar() {
     }
     return "";
   }
-  function handleSclae(note) {
-    if (
-      note === "F#" ||
-      note === "G#" ||
-      note === "A#" ||
-      note === "C#" ||
-      note === "D#"
-    ) {
-      return "hidden";
+
+  function displayScale(note) {
+    let classN = "hidden";
+    if (scaleSorted.find((elm) => elm === note)) {
+      classN = "";
+      return classN;
     }
-    return "";
+    classN = "hidden";
+    return classN;
   }
 
+  /**
+   * It loops through the array of arrays, and if the first element of the array matches the user input,
+   * it filters out the duplicates and sets the state
+   * @returns the scaleSorted array.
+   */
   function handleScales() {
     for (let i = 0; i < scales[0].majorScale.key.length; i++) {
       // console.log(scales[0].majorScale.key[i]);
@@ -82,140 +95,306 @@ function Guitar() {
     }
   }
 
+  /**
+   * The function `saveSubmit` takes in an event `e` and prevents the default action of the event, then
+   * logs the userInputs array to the console
+   * @param e - the event object
+   */
   function saveSubmit(e) {
     e.preventDefault();
     console.log(userInputs);
   }
 
-  handleScales();
-  console.log(scaleSorted);
+  useEffect(() => {
+    handleScales();
+  }, [userInputs.note]);
+
+  // console.log(scaleSorted);
+  // console.log(userInputs);
+  console.log(string1[1][0].noteSharp);
 
   return (
     <div className="Guitar">
       <div className="string1">
         <div className="stringReal"></div>
-        {string1[0].note.map((note, index) => {
-          return (
-            <div
-              key={`${index}stg1${string1[1].keyNumber[increment1Key++]}`}
-              className="fret"
-            >
-              <div
-                id={`${string1[1].keyNumber[increment1ID++]}-1`}
-                className={`string ${note} ${
-                  string1[1].keyNumber[increment1++]
-                } ${suppAlteration(note)} ${note === "C" ? "root" : ""}`}
-              >
-                {note}
-              </div>
-            </div>
-          );
-        })}
+        {userInputs.alt === "#"
+          ? string1[1][0].noteSharp.map((note, index) => {
+              return (
+                <div
+                  key={`${index}stg1${
+                    string1[2][0].keyNumber[increment1Key++]
+                  }`}
+                  className="fret"
+                >
+                  <div
+                    id={`${string1[2][0].keyNumber[increment1ID++]}-1`}
+                    className={`string ${note} ${
+                      string1[2][0].keyNumber[increment1++]
+                    } ${displayScale(note)} ${
+                      note === userInputs.note ? "root" : ""
+                    }`}
+                  >
+                    {note}
+                  </div>
+                </div>
+              );
+            })
+          : string1[0].noteFlat.map((note, index) => {
+              return (
+                <div
+                  key={`${index}stg1${
+                    string1[2][0].keyNumber[increment1Key++]
+                  }`}
+                  className="fret"
+                >
+                  <div
+                    id={`${string1[2][0].keyNumber[increment1ID++]}-1`}
+                    className={`string ${note} ${
+                      string1[2][0].keyNumber[increment1++]
+                    } ${displayScale(note)} ${
+                      note === userInputs.note ? "root" : ""
+                    }`}
+                  >
+                    {note}
+                  </div>
+                </div>
+              );
+            })}
       </div>
       <br />
       <div className="string2">
         <div className="stringReal"></div>
-        {string2[0].note.map((note, index) => {
-          return (
-            <div
-              key={`${index}stg2${string2[1].keyNumber[increment2Key++]}`}
-              className="fret"
-            >
-              <div
-                id={`${string2[1].keyNumber[increment2ID++]}-2`}
-                className={`string ${note} ${
-                  string2[1].keyNumber[increment2++]
-                } ${suppAlteration(note)} ${note === "C" ? "root" : ""}`}
-              >
-                {note}
-              </div>
-            </div>
-          );
-        })}
+        {userInputs.alt === "#"
+          ? string2[1][0].noteSharp.map((note, index) => {
+              return (
+                <div
+                  key={`${index}stg2${
+                    string2[2][0].keyNumber[increment2Key++]
+                  }`}
+                  className="fret"
+                >
+                  <div
+                    id={`${string2[2][0].keyNumber[increment2ID++]}-2`}
+                    className={`string ${note} ${
+                      string2[2][0].keyNumber[increment2++]
+                    } ${displayScale(note)} ${
+                      note === userInputs.note ? "root" : ""
+                    }`}
+                  >
+                    {note}
+                  </div>
+                </div>
+              );
+            })
+          : string2[0].noteFlat.map((note, index) => {
+              return (
+                <div
+                  key={`${index}stg2${
+                    string2[2][0].keyNumber[increment2Key++]
+                  }`}
+                  className="fret"
+                >
+                  <div
+                    id={`${string2[2][0].keyNumber[increment2ID++]}-2`}
+                    className={`string ${note} ${
+                      string2[2][0].keyNumber[increment2++]
+                    } ${displayScale(note)} ${
+                      note === userInputs.note ? "root" : ""
+                    }`}
+                  >
+                    {note}
+                  </div>
+                </div>
+              );
+            })}
       </div>
       <br />
       <div className="string3">
         <div className="stringReal"></div>
-        {string3[0].note.map((note, index) => {
-          return (
-            <div
-              key={`${index}stg3${string3[1].keyNumber[increment3Key++]}`}
-              className="fret"
-            >
-              <div
-                id={`${string3[1].keyNumber[increment3ID++]}-3`}
-                className={`string ${note} ${
-                  string3[1].keyNumber[increment3++]
-                } ${suppAlteration(note)} ${note === "C" ? "root" : ""}`}
-              >
-                {note}
-              </div>
-            </div>
-          );
-        })}
+        {userInputs.alt === "#"
+          ? string3[1][0].noteSharp.map((note, index) => {
+              return (
+                <div
+                  key={`${index}stg3${
+                    string3[2][0].keyNumber[increment3Key++]
+                  }`}
+                  className="fret"
+                >
+                  <div
+                    id={`${string3[2][0].keyNumber[increment3ID++]}-3`}
+                    className={`string ${note} ${
+                      string3[2][0].keyNumber[increment3++]
+                    } ${displayScale(note)} ${
+                      note === userInputs.note ? "root" : ""
+                    }`}
+                  >
+                    {note}
+                  </div>
+                </div>
+              );
+            })
+          : string3[0].noteFlat.map((note, index) => {
+              return (
+                <div
+                  key={`${index}stg3${
+                    string3[2][0].keyNumber[increment3Key++]
+                  }`}
+                  className="fret"
+                >
+                  <div
+                    id={`${string3[2][0].keyNumber[increment3ID++]}-3`}
+                    className={`string ${note} ${
+                      string3[2][0].keyNumber[increment3++]
+                    } ${displayScale(note)} ${
+                      note === userInputs.note ? "root" : ""
+                    }`}
+                  >
+                    {note}
+                  </div>
+                </div>
+              );
+            })}
       </div>
       <br />
       <div className="string4">
         <div className="stringReal"></div>
-        {string4[0].note.map((note, index) => {
-          return (
-            <div
-              key={`${index}stg4${string4[1].keyNumber[increment4Key++]}`}
-              className="fret"
-            >
-              <div
-                id={`${string4[1].keyNumber[increment4ID++]}-4`}
-                className={`string ${note} ${
-                  string4[1].keyNumber[increment4++]
-                } ${suppAlteration(note)} ${note === "C" ? "root" : ""}`}
-              >
-                {note}
-              </div>
-            </div>
-          );
-        })}
+        {userInputs.alt === "#"
+          ? string4[1][0].noteSharp.map((note, index) => {
+              return (
+                <div
+                  key={`${index}stg4${
+                    string4[2][0].keyNumber[increment4Key++]
+                  }`}
+                  className="fret"
+                >
+                  <div
+                    id={`${string4[2][0].keyNumber[increment4ID++]}-4`}
+                    className={`string ${note} ${
+                      string4[2][0].keyNumber[increment4++]
+                    } ${displayScale(note)} ${
+                      note === userInputs.note ? "root" : ""
+                    }`}
+                  >
+                    {note}
+                  </div>
+                </div>
+              );
+            })
+          : string4[0].noteFlat.map((note, index) => {
+              return (
+                <div
+                  key={`${index}stg4${
+                    string4[2][0].keyNumber[increment4Key++]
+                  }`}
+                  className="fret"
+                >
+                  <div
+                    id={`${string4[2][0].keyNumber[increment4ID++]}-4`}
+                    className={`string ${note} ${
+                      string4[2][0].keyNumber[increment4++]
+                    } ${displayScale(note)} ${
+                      note === userInputs.note ? "root" : ""
+                    }`}
+                  >
+                    {note}
+                  </div>
+                </div>
+              );
+            })}
       </div>
       <br />
       <div className="string5">
         <div className="stringReal"></div>
-        {string5[0].note.map((note, index) => {
-          return (
-            <div
-              key={`${index}stg5${string5[1].keyNumber[increment5Key++]}`}
-              className="fret"
-            >
-              <div
-                id={`${string5[1].keyNumber[increment5ID++]}-5`}
-                className={`string ${note} ${
-                  string5[1].keyNumber[increment5++]
-                } ${suppAlteration(note)} ${note === "C" ? "root" : ""}`}
-              >
-                {note}
-              </div>
-            </div>
-          );
-        })}
+        {userInputs.alt === "#"
+          ? string5[1][0].noteSharp.map((note, index) => {
+              return (
+                <div
+                  key={`${index}stg5${
+                    string5[2][0].keyNumber[increment5Key++]
+                  }`}
+                  className="fret"
+                >
+                  <div
+                    id={`${string5[2][0].keyNumber[increment5ID++]}-5`}
+                    className={`string ${note} ${
+                      string5[2][0].keyNumber[increment5++]
+                    } ${displayScale(note)} ${
+                      note === userInputs.note ? "root" : ""
+                    }`}
+                  >
+                    {note}
+                  </div>
+                </div>
+              );
+            })
+          : string5[0].noteFlat.map((note, index) => {
+              return (
+                <div
+                  key={`${index}stg5${
+                    string5[2][0].keyNumber[increment5Key++]
+                  }`}
+                  className="fret"
+                >
+                  <div
+                    id={`${string5[2][0].keyNumber[increment5ID++]}-5`}
+                    className={`string ${note} ${
+                      string5[2][0].keyNumber[increment5++]
+                    } ${displayScale(note)} ${
+                      note === userInputs.note ? "root" : ""
+                    }`}
+                  >
+                    {note}
+                  </div>
+                </div>
+              );
+            })}
       </div>
       <br />
       <div className="string6">
         <div className="stringReal"></div>
-        {string6[0].note.map((note, index) => {
-          return (
-            <div
-              key={`${index}stg6${string6[1].keyNumber[increment6Key++]}`}
-              className="fret"
-            >
-              <div
-                id={`${string6[1].keyNumber[increment6ID++]}-6`}
-                className={`string ${note} ${
-                  string6[1].keyNumber[increment6++]
-                } ${suppAlteration(note)} ${note === "C" ? "root" : ""}`}
-              >
-                {note}
-              </div>
-            </div>
-          );
-        })}
+        {userInputs.alt === "#"
+          ? string6[1][0].noteSharp.map((note, index) => {
+              return (
+                <div
+                  key={`${index}stg6${
+                    string6[2][0].keyNumber[increment6Key++]
+                  }`}
+                  className="fret"
+                >
+                  <div
+                    id={`${string6[2][0].keyNumber[increment6ID++]}-6`}
+                    className={`string ${note} ${
+                      string6[2][0].keyNumber[increment6++]
+                    } ${displayScale(note)} ${
+                      note === userInputs.note ? "root" : ""
+                    }`}
+                  >
+                    {note}
+                  </div>
+                </div>
+              );
+            })
+          : string6[0].noteFlat.map((note, index) => {
+              return (
+                <div
+                  key={`${index}stg6${
+                    string6[2][0].keyNumber[increment6Key++]
+                  }`}
+                  className="fret"
+                >
+                  <div
+                    id={`${string6[2][0].keyNumber[increment6ID++]}-6`}
+                    className={`string ${note} ${
+                      string6[2][0].keyNumber[increment6++]
+                    } ${displayScale(note)} ${
+                      note === userInputs.note ? "root" : ""
+                    }`}
+                  >
+                    {note}
+                  </div>
+                </div>
+              );
+            })}
       </div>
       <div className="flagBox">
         <span className="flag3">3</span>
@@ -247,26 +426,46 @@ function Guitar() {
             <option value="b">b</option>
             <option value="#">#</option>
           </select>
-          <select
-            className="form-select form-select-lg mb-3 selectForm"
-            aria-label=".form-select-lg example"
-            id="note"
-            onChange={handleInputChange}
-          >
-            <option defaultValue>Tonique</option>
-            <option value="C">C</option>
-            <option value="Db">Db</option>
-            <option value="D">D</option>
-            <option value="Eb">Eb</option>
-            <option value="E">E</option>
-            <option value="F">F</option>
-            <option value="Gb">Gb</option>
-            <option value="G">G</option>
-            <option value="Ab">Ab</option>
-            <option value="A">A</option>
-            <option value="Bb">Bb</option>
-            <option value="B">B</option>
-          </select>
+          {userInputs.alt === "#" ? (
+            <div>
+              <select
+                className="form-select form-select-lg mb-3 selectForm"
+                aria-label=".form-select-lg example"
+                id="note"
+                onChange={handleInputChange}
+              >
+                <option defaultValue>Tonique</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="D#">D#</option>
+                <option value="E">E</option>
+                <option value="F#">F#</option>
+                <option value="G">G</option>
+                <option value="G#">G#</option>
+                <option value="A">A</option>
+                <option value="A#">A#</option>
+                <option value="B">B</option>
+              </select>
+            </div>
+          ) : (
+            <div>
+              <select
+                className="form-select form-select-lg mb-3 selectForm"
+                aria-label=".form-select-lg example"
+                id="note"
+                onChange={handleInputChange}
+              >
+                <option defaultValue>Tonique</option>
+                <option value="C">C</option>
+                <option value="Db">Db</option>
+                <option value="Eb">Eb</option>
+                <option value="F">F</option>
+                <option value="Gb">Gb</option>
+                <option value="Ab">Ab</option>
+                <option value="Bb">Bb</option>
+              </select>
+            </div>
+          )}
           <select
             className="form-select form-select-lg mb-3 selectForm"
             aria-label=".form-select-lg example"
