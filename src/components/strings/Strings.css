@@ -1,0 +1,60 @@
+.stringReal {
+  position: absolute;
+  margin-top: 10px;
+  height: 5px;
+  width: 1670px;
+  background-color: rgb(175, 100, 70);
+  border-radius: 50%;
+  z-index: 1;
+}
+.string {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: aliceblue;
+  width: 40px;
+  height: 40px;
+  font-weight: 900;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: -10px;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.string:hover {
+  opacity: 90%;
+}
+
+.fret {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  border-right: solid 4px rgb(97, 86, 76);
+  border-radius: 4px;
+  margin-top: -15px;
+}
+
+.string1,
+.string2,
+.string3,
+.string4,
+.string5,
+.string6 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.hidden {
+  /* display: none; */
+  visibility: hidden;
+}
+
+.root {
+  background-color: brown;
+  color: white;
+}
