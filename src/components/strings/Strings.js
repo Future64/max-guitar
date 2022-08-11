@@ -15,6 +15,7 @@ function String(props) {
   let [scaleSorted, setScaleSorted] = useState([]);
   const nbStrings = [string1, string2, string3, string4, string5, string6];
   const userInputs = props.props;
+  const majScaleKey = scales[0].majorScale.key;
 
   function displayScale(note) {
     let classN = "hidden";
@@ -27,11 +28,11 @@ function String(props) {
   }
 
   function handleScales() {
-    for (let i = 0; i < scales[0].majorScale.key.length; i++) {
-      if (scales[0].majorScale.key[i][0] === userInputs.note) {
+    for (let i = 0; i < majScaleKey.length; i++) {
+      if (majScaleKey[i][0] === userInputs.note) {
         setScaleSorted(
-          scales[0].majorScale.key[i].filter(function (ele, pos) {
-            return scales[0].majorScale.key[i].indexOf(ele) == pos;
+          majScaleKey[i].filter(function (ele, pos) {
+            return majScaleKey[i].indexOf(ele) === pos;
           })
         );
       }
@@ -44,7 +45,7 @@ function String(props) {
     let increment1ID = 0;
     return (
       <>
-        <div className={stringClasss} key={i}>
+        <div className={stringClasss} key={`${stringClass}${i}${stg}`}>
           <div className="stringReal"></div>
           {userInputs.alt === "#"
             ? stringClass[1][0].noteSharp.map((note, index) => {
@@ -110,7 +111,8 @@ function String(props) {
           `string${index + 1}`,
           userInputs,
           `${stg}`,
-          `${index + 1}`
+          `${index + 1}`,
+          index
         );
       })}
     </>

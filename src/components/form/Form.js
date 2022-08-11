@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { UserInputContext } from "../../context/userInputContext";
 import Select from "../select/Select";
 import "./Form.css";
 
 function Form() {
   const { userInputs } = useContext(UserInputContext);
-  const { handleInputChange } = useContext(UserInputContext);
-
   const alt = ["b", "#"];
   const notesFlat = ["C", "Db", "Eb", "F", "Gb", "Ab", "Bb"];
   const notesSharp = [
@@ -45,13 +43,13 @@ function Form() {
       }}
     >
       <div className="selectBox">
-        <Select value={alt} name="Altération" id="alt" key="123key" />
+        <Select value={alt} name="Altération" id="alt" />
         {userInputs.alt === "#" ? (
-          <Select value={notesSharp} name="Tonique" id="note" key="223key" />
+          <Select value={notesSharp} name="Tonique" id="note" />
         ) : (
-          <Select value={notesFlat} name="Tonique" id="note" key="323key" />
+          <Select value={notesFlat} name="Tonique" id="note" />
         )}
-        <Select value={scales} name="Gammes" id="scale" key="423key" />
+        <Select value={scales} name="Gammes" id="scale" />
       </div>
 
       <button form="form" type="submit" className="btn btn-success buttonValid">
