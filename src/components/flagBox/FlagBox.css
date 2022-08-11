@@ -1,0 +1,49 @@
+.flagBox {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 10px;
+  color: rgb(174, 171, 171);
+}
+
+.flag3 {
+  position: relative;
+  right: 515px;
+}
+.flag5 {
+  position: relative;
+  right: 395px;
+}
+.flag7 {
+  position: relative;
+  right: 280px;
+}
+.flag9 {
+  position: relative;
+  right: 160px;
+}
+.flag12 {
+  position: relative;
+  left: 22px;
+}
+.flag15 {
+  position: relative;
+  left: 198px;
+}
+.flag17 {
+  position: relative;
+  left: 310px;
+}
+.flag19 {
+  position: relative;
+  left: 420px;
+}
+.flag21 {
+  position: relative;
+  left: 530px;
+}
+.flag24 {
+  position: relative;
+  left: 705px;
+}

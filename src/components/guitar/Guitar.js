@@ -1,38 +1,21 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UserInputContext } from "../../context/userInputContext";
 import String from "../strings/Strings";
+import FlagBox from "../flagBox/FlagBox";
 import "./Guitar.css";
 
 function Guitar() {
   const { userInputs } = useContext(UserInputContext);
   const { handleInputChange } = useContext(UserInputContext);
 
-  /**
-   * The function `saveSubmit` takes in an event `e` and prevents the default action of the event, then
-   * logs the userInputs array to the console
-   * @param e - the event object
-   */
   function saveSubmit(e) {
     e.preventDefault();
-    // console.log(userInputs);
   }
 
-  // console.log(userInputs);
   return (
     <div className="Guitar">
       <String props={userInputs} />
-      <div className="flagBox">
-        <span className="flag3">3</span>
-        <span className="flag5">5</span>
-        <span className="flag7">7</span>
-        <span className="flag9">9</span>
-        <span className="flag12">12</span>
-        <span className="flag15">15</span>
-        <span className="flag17">17</span>
-        <span className="flag19">19</span>
-        <span className="flag21">21</span>
-        <span className="flag24">24</span>
-      </div>
+      <FlagBox />
       <form
         id="form"
         className="form"
