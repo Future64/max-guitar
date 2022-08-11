@@ -1,10 +1,36 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UserInputContext } from "../../context/userInputContext";
+import Select from "../select/Select";
 import "./Form.css";
 
 function Form() {
   const { userInputs } = useContext(UserInputContext);
   const { handleInputChange } = useContext(UserInputContext);
+
+  const alt = ["b", "#"];
+  const notesFlat = ["C", "Db", "Eb", "F", "Gb", "Ab", "Bb"];
+  const notesSharp = [
+    "C",
+    "C#",
+    "D",
+    "D#",
+    "E",
+    "F",
+    "F#",
+    "G",
+    "G#",
+    "A",
+    "A#",
+    "B",
+  ];
+  const scales = [
+    "Pentatonique majeure",
+    "Pentatonique mineure",
+    "Gamme majeure naturel",
+    "Gamme mineure naturel",
+    "Gamme mineure Harmonique",
+    "Gamme mineure Mélodique",
+  ];
 
   function saveSubmit(e) {
     e.preventDefault();
@@ -19,70 +45,13 @@ function Form() {
       }}
     >
       <div className="selectBox">
-        <select
-          className="form-select form-select-lg mb-3 selectForm"
-          aria-label=".form-select-lg example"
-          id="alt"
-          onChange={handleInputChange}
-        >
-          <option defaultValue>Altération</option>
-          <option value="b">b</option>
-          <option value="#">#</option>
-        </select>
+        <Select value={alt} name="Altération" id="alt" key="123key" />
         {userInputs.alt === "#" ? (
-          <div>
-            <select
-              className="form-select form-select-lg mb-3 selectForm"
-              aria-label=".form-select-lg example"
-              id="note"
-              onChange={handleInputChange}
-            >
-              <option defaultValue>Tonique</option>
-              <option value="C">C</option>
-              <option value="D">D</option>
-              <option value="D#">D#</option>
-              <option value="E">E</option>
-              <option value="F#">F#</option>
-              <option value="G">G</option>
-              <option value="G#">G#</option>
-              <option value="A">A</option>
-              <option value="A#">A#</option>
-              <option value="B">B</option>
-            </select>
-          </div>
+          <Select value={notesSharp} name="Tonique" id="note" key="223key" />
         ) : (
-          <div>
-            <select
-              className="form-select form-select-lg mb-3 selectForm"
-              aria-label=".form-select-lg example"
-              id="note"
-              onChange={handleInputChange}
-            >
-              <option defaultValue>Tonique</option>
-              <option value="C">C</option>
-              <option value="Db">Db</option>
-              <option value="Eb">Eb</option>
-              <option value="F">F</option>
-              <option value="Gb">Gb</option>
-              <option value="Ab">Ab</option>
-              <option value="Bb">Bb</option>
-            </select>
-          </div>
+          <Select value={notesFlat} name="Tonique" id="note" key="323key" />
         )}
-        <select
-          className="form-select form-select-lg mb-3 selectForm"
-          aria-label=".form-select-lg example"
-          id="scale"
-          onChange={handleInputChange}
-        >
-          <option defaultValue>Choisir une gamme</option>
-          <option value="majPenta">Pentatonique majeure</option>
-          <option value="minPenta">Pentatonique mineure</option>
-          <option value="majNatScale">Gamme majeure naturel</option>
-          <option value="minNatScale">Gamme mineure naturel</option>
-          <option value="minHarmoScale">Gamme mineure Harmonique</option>
-          <option value="minMeloScale">Gamme mineure Mélodique</option>
-        </select>
+        <Select value={scales} name="Gammes" id="scale" key="423key" />
       </div>
 
       <button form="form" type="submit" className="btn btn-success buttonValid">
