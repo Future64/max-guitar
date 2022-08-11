@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-
-import { scales, modes } from "../../data/scalesData";
+import { scales } from "../../data/scalesData";
 import {
   string1,
   string2,
